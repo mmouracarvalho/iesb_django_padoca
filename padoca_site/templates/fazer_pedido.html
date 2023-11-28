@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fazer Pedido</title>
+</head>
+<body>
+    <h1>Fazer Pedido</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for produto in produtos %}
+            <div>
+                <label>
+                    {{ produto.nome }} - {{ produto.preco }}
+                    <input type="checkbox" name="produto_{{ produto.id }}" value="1">
+                    Quantidade: <input type="number" name="quantidade_{{ produto.id }}" min="1" value="1">
+                </label>
+            </div>
+        {% endfor %}
+        <button type="submit">Enviar Pedido</button>
+    </form>
+</body>
+</html>

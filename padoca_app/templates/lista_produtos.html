@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Produtos</title>
+</head>
+<body>
+    <h1>Produtos da Padaria</h1>
+    <ul>
+        {% for produto in produtos %}
+            <li>
+                <h2>{{ produto.nome }}</h2>
+                <p>Preço: R$ {{ produto.preco }}</p>
+                <p>{{ produto.descricao }}</p>                
+            </li>
+        {% empty %}
+            <p>Nenhum produto encontrado.</p>
+        {% endfor %}
+    </ul>
+
+    <!-- Paginação -->
+    <div class="pagination">
+        <span class="step-links">
+            {% if produtos.has_previous %}
+                <a href="?page=1">&laquo; primeira</a>
+                <a href="?page={{ produtos.previous_page_number }}">anterior</a>
+            {% endif %}
+
+            <span class="current">
+                Página {{ produtos.number }} de {{ produtos.paginator.num_pages }}.
+            </span>
+
+            {% if produtos.has_next %}
+                <a href="?page={{ produtos.next_page_number }}">próxima</a>
+                <a href="?page={{ produtos.paginator.num_pages }}">última &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+</body>
+</html>

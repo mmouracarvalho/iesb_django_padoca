@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Seus Pedidos</title>
+</head>
+<body>
+    <h1>Seus Pedidos</h1>
+    {% for pedido in pedidos %}
+        <div>
+            <h2>Pedido {{ pedido.id }}</h2>
+            {% for item in pedido.itens.all %}
+                <p>{{ item.produto.nome }} - Quantidade: {{ item.quantidade }}</p>
+            {% endfor %}
+        </div>
+    {% empty %}
+        <p>Você não tem pedidos ativos.</p>
+    {% endfor %}
+</body>
+</html>
